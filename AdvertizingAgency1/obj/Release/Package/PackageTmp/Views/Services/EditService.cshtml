@@ -1,0 +1,52 @@
+﻿@using DAL;
+@using AdvertizingAgency1.Models
+@model EditServiceViewModel
+@{
+    Layout = null;
+}
+  <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<title>Изменить услугу</title>
+<div class="contentformEdit">
+    <h2>Изменить услугу - @Model.Type</h2>
+    <div class="formEditOrCreate">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Услуги</legend>
+
+                <div class="editor-field">
+                    @Html.HiddenFor(model => model.IDser)
+                    @Html.HiddenFor(model => model.Type)
+                </div>
+
+                <div class="editor-label">
+                    @Html.Label("Наименование")
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ServiceName)
+                    @Html.ValidationMessageFor(model => model.ServiceName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.Label("Цена")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ServiceCost)
+                    @Html.ValidationMessageFor(model => model.ServiceCost)
+                </div>
+
+                <p>
+                    <input type="submit" value="Сохранить изменения" />
+                </p>
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("Назад", "SelectTypeUslug", "Services", new { s = Model.Type }, null)
+        </div>
+    </div>
+</div>
+
+

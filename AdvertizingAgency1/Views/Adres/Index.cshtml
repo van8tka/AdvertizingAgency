@@ -1,0 +1,54 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model PricesAdresViewModel
+@{
+    ViewBag.Title = "Список аренды билбордов";
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<div>
+    <h2>Список адресов аренды билбордов:</h2>
+ 
+    <br />
+    @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+    {
+        @Html.ActionLink("Добавить новый адрес", "CreateAdres", "Adres")
+        <table class="tablePrices">
+            <tr>
+                <th>Код</th>
+                <th>Адрес</th>
+                <th class="costprice">Цена размещения на 1 месяц</th>
+                <th>Действие</th>
+                @foreach (Адреса adres in Model.Adres)
+                {
+                <tr>
+                    <td>@adres.Код_адреса</td>
+                    <td class="actiosTable">@Html.ActionLink(@adres.Адрес, "EditAdres", "Adres", new { id = adres.Код_адреса }, null)</td>
+                    <td class="costprice">@adres.Цена_на_месяц</td>
+                    <td class="actiosTable">@Html.ActionLink("Удалить", "DeleteAdres", "Adres", new { id = adres.Код_адреса }, null)</td>
+                </tr>
+                }
+            </table>
+    }
+    else
+    {
+        <table class="tablePrices">
+            <tr>
+                <th>Код</th>
+                <th>Адрес</th>
+                <th class="costprice">Цена размещения на 1 месяц</th>
+                @foreach (Адреса adres in Model.Adres)
+                {
+                <tr>
+                    <td>@adres.Код_адреса</td>
+                    <td>@adres.Адрес</td>
+                    <td class="costprice">@adres.Цена_на_месяц</td>
+                </tr>
+                }
+            </table>
+    }
+</div>
+   
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfoAdres, x => Url.Action("Index", new { page = x }))
+</div>
+   

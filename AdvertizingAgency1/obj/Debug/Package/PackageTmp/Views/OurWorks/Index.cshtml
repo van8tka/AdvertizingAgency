@@ -1,0 +1,25 @@
+﻿@using System.Runtime.CompilerServices
+@model AdvertizingAgency1.Models.DownloadFilesViewModel
+@{
+    ViewBag.Title = "Наши работы";
+}
+
+
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+
+<div style="margin-left: 100px">
+    <h2>Наши работы:</h2>
+    <br />
+    @foreach (string i in Model.FileList)
+    {            
+        <img class="small_img" src="@Url.Content("~/content/OurWorks/")@i" alt="" width="200px" height="200px" />
+        if(HttpContext.Current.User.IsInRole("admin"))
+        { 
+            @Html.ActionLink("Удалить", "DeleteOurWorks", "OurWorks", new { id = "", file=i},null)
+        }
+    }      
+</div>
+                   @if(HttpContext.Current.User.IsInRole("admin"))
+                   { 
+                        @Html.ActionLink("Добавить изображения", "AddFileWorks")
+                      }

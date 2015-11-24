@@ -1,0 +1,123 @@
+﻿@using DAL;
+@using AdvertizingAgency1.Models
+@model DogovorViewModel
+@{
+    ViewBag.Title = "Договора - для установки изделий";
+}
+
+<h2 style="margin-left: 150px">Список договоров по которым необходима установка изделий:</h2>
+
+<div class="menuStatus">
+    <h3>Статус договора:</h3>
+    <ul class="multimenuStatus">
+        <li>  @Html.ActionLink("Все договора", "Index", "Dogovora")</li>
+        @if (HttpContext.Current.User.IsInRole("bookkeeper") || HttpContext.Current.User.IsInRole("admin"))
+        {
+
+            <li>  @Html.ActionLink("К оплате", "SForPay", "Dogovora")</li>
+            <li>  @Html.ActionLink("К оплате на продление", "SToPayForLong", "Dogovora")</li>
+        }
+        @if (HttpContext.Current.User.IsInRole("maneger") || HttpContext.Current.User.IsInRole("admin"))
+        {
+            <li>  @Html.ActionLink("Оплачено", "SPayed", "Dogovora")</li>
+            <li>  @Html.ActionLink("Оплачено продление", "SPayedLong", "Dogovora")</li>
+            <li>  @Html.ActionLink("Оценка макета", "SLookMaket", "Dogovora")</li>
+            <li>  @Html.ActionLink("Требует продления", "SRequestLong", "Dogovora")</li>
+            <li>  @Html.ActionLink("Частичный демонтаж", "SPartDestroy", "Dogovora")</li>
+            <li>  @Html.ActionLink("Полный демонтаж", "SFullDestroy", "Dogovora")</li>
+            <li>  @Html.ActionLink("Установлено", "SSets", "Dogovora")</li>
+            <li>  @Html.ActionLink("Готово", "SRedy", "Dogovora")</li>
+            <li>  @Html.ActionLink("Закрыто", "SClose", "Dogovora")</li>
+        }
+        @if (HttpContext.Current.User.IsInRole("designer") || HttpContext.Current.User.IsInRole("admin"))
+        {
+            <li>  @Html.ActionLink("Разработка дизайна", "SDesigner", "Dogovora")</li>
+            <li>  @Html.ActionLink("На доработку", "SForRedesign", "Dogovora")</li>
+    <li >  @Html.ActionLink("Готовить оригинал", "SMakeOriginal", "Dogovora")</li>
+        }
+        @if (HttpContext.Current.User.IsInRole("master") || HttpContext.Current.User.IsInRole("admin"))
+        {
+            <li>  @Html.ActionLink("В мастерскую", "SInMasters", "Dogovora")</li>
+        }
+        @if (HttpContext.Current.User.IsInRole("installer") || HttpContext.Current.User.IsInRole("admin"))
+{
+    <li class="activepagestatus">  @Html.ActionLink("Готов к установке", "SRedyForSets", "Dogovora")</li>
+            <li>  @Html.ActionLink("Готов к демонтажу", "SRedyToDestroy", "Dogovora")</li>
+        }
+    </ul>
+</div>
+
+
+<div class="dogovor">
+    <table class="tableDogovor">
+        <tr class="firststringtable">
+            <th>Номер договора</th>
+            <th>Клиент</th>
+            <th>УНП</th>
+            <th>Контактное лицо</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Менеджер</th>
+            <th>Итоговая стоимость</th>
+            <th>Дата заключения</th>
+            <th>Дата готовности</th>
+            <th>Статус</th>
+            <th>Примечание</th>
+            <th>Пожелания клиента</th>
+            <th>Изменить статус</th>
+            <th>Добавить файл</th>
+        </tr>
+        @foreach (Договора dog in Model.dogovora)
+        {
+            <tr>
+                <td>@Html.ActionLink(dog.Номер_договора.ToString(), "ZakazOfDogovor", new { id = dog.Номер_договора }, null)</td>
+                @foreach (Клиенты cl in Model.client)
+                {
+                    if (dog.Код_клиента == cl.Код_клиента)
+                    {
+                        <td>@Html.ActionLink(cl.Наименование, "ZakazOfDogovor", new { id = dog.Номер_договора }, null)</td>
+                        <td>@Html.ActionLink(cl.УНП.ToString(), "ZakazOfDogovor", new { id = dog.Номер_договора }, null)</td>
+                        foreach (Контактное_лицо contact in Model.contactnoeLico)
+                        {
+                            if (cl.Код_клиента == contact.Код_клиента)
+                            {
+                                <td>@contact.ФИО</td>
+                                <td>@contact.Телефон</td>
+                                <td>@contact.Email</td>
+                              
+                            }
+                        }
+
+                    }
+                }
+                @foreach (Сотрудники sotr in Model.sotrudniki)
+                {
+                    if (dog.Код_сотрудника == sotr.Код_сотрудника)
+                    {
+                        <td>@sotr.ФИО_сотрудника</td>
+                    }
+                }
+                <td>@dog.Итоговая_стоимость</td>
+                <td>@dog.Дата_заказа.ToString().Remove(10)</td>
+                <td>@dog.Дата_готовности.ToString().Remove(10)</td>
+                <td>@dog.Статус</td>
+                <td>@dog.Примечания</td>
+
+                @foreach (Контактное_лицо contact in Model.contactnoeLico)
+                {
+                    if (dog.Код_клиента == contact.Код_клиента)
+                    {
+                        <td>@contact.Пожелания</td>
+                    }
+                }
+                <td>@Html.ActionLink("Установлено", "ChangeStatusOnSSets", "Dogovora", new { id = dog.Номер_договора }, null)</td>
+                <td>@Html.ActionLink("Добавить файл", "AddFileOtchets", "Razrabotki", new { id = dog.Номер_договора }, null)</td>
+
+            </tr>
+        }
+    </table>
+
+</div>
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("SRedyForSets", new { page = x }))
+</div>

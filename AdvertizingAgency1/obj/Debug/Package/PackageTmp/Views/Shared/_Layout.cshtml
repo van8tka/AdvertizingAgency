@@ -1,0 +1,269 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Рекламное агенство.</title>
+   <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink("Рекламное агентство наружной рекламы", "Index", "Home")</p>
+               
+                @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                {
+                   
+                      <label id="HowPeople"> Новых клиентов: 0 </label>
+                    
+                    
+                     <script type="text/javascript">
+                         $(function () {
+
+                         
+                             $.ajax({
+                                 type: 'GET',
+                                 url: '@Url.Action("GetHowPeople","Home")',
+                                 success: function (data) {
+
+                                     // заменяем содержимое присланным частичным представлением
+                                     $('#HowPeople').text("Новых клиентов: "+data);
+                                 }
+                             });
+                         });
+                     
+                     </script>           
+                
+                }
+             
+                    @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger") || HttpContext.Current.User.IsInRole("designer") || HttpContext.Current.User.IsInRole("master") || HttpContext.Current.User.IsInRole("installer") || HttpContext.Current.User.IsInRole("bookkeeper"))
+{
+    <div style="min-width:450px; max-width: 950px; background-color: rgb(66, 214, 105); height: 118px; border-style: inset">
+        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+        {
+
+            <label id="all" class="online">Всего договоров: 0  </label>
+            <label id="opl" class="online">Оплачено: 0 </label>
+            <label id="oplprod" class="online">Оплачено продление: 0 </label>
+            <label id="ocenmak" class="online">Для оценки макета: 0</label>
+            <label id="trprodl" class="online">Для продления: 0 </label>
+            <label id="chastdemontag" class="online">Договоров с частичным демонтажом: 0</label>
+            <label id="fulldemontag" class="online">Договоров с полным демонтажом: 0</label>
+            <label id="yst" class="online">Установлено: 0</label>
+            <label id="got" class="online">Готово: 0</label>
+            <label id="close" class="online">Закрыто: 0 </label>
+        }
+
+        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("designer"))
+        {
+
+            <label id="razdiz" class="online">Для разработки дизайна: 0</label>
+            <label id="dordiz" class="online">На доработку дизайна: 0</label>
+            <label id="podorig" class="online">Для подготовки оригиналов: 0</label>
+
+        }
+        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("master"))
+        {
+
+            <label id="inmaster" class="online">Для производства: 0</label>
+
+        }
+        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("installer"))
+        {
+
+            <label id="gotyst" class="online">Готовых к установке: 0</label>
+            <label id="gotdem" class="online">Готовых к демонтажу: 0</label>
+
+        }
+        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("bookkeeper"))
+        {
+
+            <label id="kopl" class="online">Договоров к оплате: 0 </label>
+            <label id="koplpr" class="online">Договоров к оплате продления: 0 </label>
+
+        }
+
+    </div>
+
+
+                        <script type="text/javascript">
+
+                            $(function () {
+
+                                $.ajax({
+                                    type: 'GET',
+                                    url: '@Url.Action("GetHowDogovor","Home")',
+                                    success: function (data) {
+                                        console.log("Выполнение JSON");
+                                        // заменяем содержимое присланным частичным представлением
+                                        $.each(data, function (i, item) {
+
+                                            if (item.Text == "всего") {
+                                                $('#all').text("Всего договоров: " + item.Value);
+                                            }
+                                            if (item.Text == "оплачено") {
+                                                $('#opl').text(" Оплачено договоров: " + item.Value);
+                                            }
+                                            if (item.Text == "оплачено продление") {
+                                                $('#oplpr').text(" Договоров с оплаченным продлением: " + item.Value);
+                                            }
+                                            if (item.Text == "к оплате") {
+                                                $('#kopl').text(" Договоров к оплате: " + item.Value);
+                                            }
+                                            if (item.Text == "к оплате на продление") {
+                                                $('#koplpr').text(" Договоров к оплате продления: " + item.Value);
+                                            }
+                                            if (item.Text == "оценка макета") {
+                                                $('#ocenmak').text(" Для оценки макета: " + item.Value);
+                                            }
+                                            if (item.Text == "оценка макета") {
+                                                $('#ocenmak').text(" Для оценки макета: " + item.Value);
+                                            }
+                                            if (item.Text == "требует продления") {
+                                                $('#trprodl').text(" Для продления: " + item.Value);
+                                            }
+                                            if (item.Text == "частичный демонтаж") {
+                                                $('#chastdemontag').text(" Договоров с частичным демонтажом: " + item.Value);
+                                            }
+                                            if (item.Text == "полный демонтаж") {
+                                                $('#fulldemontag').text(" Договоров с полным демонтажом: " + item.Value);
+                                            }
+                                            if (item.Text == "установлено") {
+                                                $('#yst').text(" Установлено: " + item.Value);
+                                            }
+                                            if (item.Text == "готово") {
+                                                $('#got').text(" Готово: " + item.Value);
+                                            }
+                                            if (item.Text == "закрыто") {
+                                                $('#close').text(" Закрыто: " + item.Value);
+                                            }
+                                            if (item.Text == "разработка дизайна") {
+                                                $('#razdiz').text(" Для разработки дизайна: " + item.Value);
+                                            }
+                                            if (item.Text == "на доработку") {
+                                                $('#dordiz').text(" На доработку дизайна: " + item.Value);
+                                            }
+                                            if (item.Text == "готовить оригинал") {
+                                                $('#podorig').text(" Для подготовки оригиналов: " + item.Value);
+                                            }
+                                            if (item.Text == "в мастерскую") {
+                                                $('#inmaster').text(" Для производства: " + item.Value);
+                                            }
+                                            if (item.Text == "готов к установке") {
+                                                $('#gotyst').text(" Готовых к установке: " + item.Value);
+                                            }
+                                            if (item.Text == "готов к демонтажу") {
+                                                $('#gotdem').text(" Готовых к демонтажу: " + item.Value);
+                                            }
+
+                                        });
+                                      
+
+                                    }
+                                });
+
+                            });
+
+
+                        </script>
+
+
+                    }
+
+
+                <div class="navigation">
+                    <br />
+                    <ul class="multimenu">
+                        @if (!(HttpContext.Current.User.IsInRole("maneger") || HttpContext.Current.User.IsInRole("designer") || HttpContext.Current.User.IsInRole("master") || HttpContext.Current.User.IsInRole("installer") || HttpContext.Current.User.IsInRole("bookkeeper")))
+                        {
+                            <li>  @Html.ActionLink("Главная", "Index", "Home")</li>
+                            <li>  @Html.ActionLink("Прайс", "Index", "Services")</li>
+                            <li>  @Html.ActionLink("Обратная связь", "Index", "Feedback")</li>
+                            <li>  @Html.ActionLink("Контакты", "Index", "Contacts")</li>
+                            <li>   @Html.ActionLink("Наши работы", "Index", "OurWorks")</li>
+                            <li>   @Html.ActionLink("Отзывы", "Index", "Responses")</li>
+                        }
+                        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger") || HttpContext.Current.User.IsInRole("designer") || HttpContext.Current.User.IsInRole("master") || HttpContext.Current.User.IsInRole("installer") || HttpContext.Current.User.IsInRole("bookkeeper"))
+                        {
+                            if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                            {
+                                <li>      @Html.ActionLink("Клиенты", "NewClients", "Clients")</li>
+                            }
+                            else
+                            {
+                                <li>      @Html.ActionLink("Клиенты", "Index", "Clients")</li>
+                            }
+
+                            <li>      @Html.ActionLink("Договора", "Index", "Dogovora")</li>
+                            <li>     @Html.ActionLink("Сотрудники", "Index", "User")</li>
+                            if (HttpContext.Current.User.IsInRole("bookkeeper") || HttpContext.Current.User.IsInRole("maneger"))
+                            {
+                                <li>  @Html.ActionLink("Прайс", "Index", "Services")</li>
+                            }
+                        }
+                    </ul>
+
+                </div>
+    </div>
+
+        </div>
+        <div class="float-right">
+            <section id="login">
+
+                @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger") || HttpContext.Current.User.IsInRole("designer") || HttpContext.Current.User.IsInRole("master") || HttpContext.Current.User.IsInRole("installer") || HttpContext.Current.User.IsInRole("bookkeeper"))
+                {
+                    @Html.Partial("CurrentUser")
+                    <br />
+                    @Html.ActionLink("Выход", "LogOff", "Account")
+                }
+                else
+                {
+                    @Html.ActionLink("Вход", "LogIn", "Account")
+                }
+            </section>
+
+        </div>
+
+    </header>
+  
+    <div id="body">
+     
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+
+            <footer>
+                <div class="content-wrapper">
+                    <div class="float-left">
+                        <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application - Рекламное агенство</p>
+                        <div>
+                            @Html.ActionLink("Главная", "Index", "Home")
+                            @Html.ActionLink("Прайс", "Index", "Services")
+                            @Html.ActionLink("Обратная связь", "Index", "Feedback")
+                            @Html.ActionLink("Контакты", "Index", "Contacts")
+                           @Html.ActionLink("Наши работы", "Index", "OurWorks")
+                            @Html.ActionLink("Отзывы", "Index", "Responses")
+                            @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger") || HttpContext.Current.User.IsInRole("designer") || HttpContext.Current.User.IsInRole("master") || HttpContext.Current.User.IsInRole("installer") || HttpContext.Current.User.IsInRole("bookkeeper"))
+                            {
+                                @Html.ActionLink("Клиенты", "Index", "Clients")
+                                @Html.ActionLink("Договора", "Index", "Dogovora")
+                                @Html.ActionLink("Сотрудники", "Index", "User")
+                            }
+                        </div>
+                    </div>             
+                  
+                </div>
+            </footer>
+
+            @Scripts.Render("~/bundles/jquery")
+            @RenderSection("scripts", required: false)
+</body>
+</html>

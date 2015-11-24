@@ -1,0 +1,38 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model ServicesViewModel
+
+@{
+    ViewBag.Title = "Услуги";
+}
+
+
+    <h2 align="center">Перечень услуг оказываемых рекламным агенством:</h2>
+    <br />
+    @foreach(string i in Model.TypPrice)
+    {
+        bool noimage = true;
+        <div class="services">
+                    <div style="margin-left:5px; margin-right:5px">     
+                        @foreach(string z in Model.FileList)
+                        {
+                            string [] split = z.Split(new Char [] {'.'});
+                            if (String.Compare(split[0], i, false)==0)
+                            { 
+                                   <a href="@Url.Action("SelectTypeUslug", "Services", new { s = i }, null)"> <img src="@Url.Content("~/content/UslugiImage/")@z" alt="" width="198px" height="198px" /></a>
+                                  noimage=false;             
+                            }
+                        }
+                        @if(noimage)
+                        {                     
+                                <a href="@Url.Action("SelectTypeUslug", "Services", new { s = i }, null)">
+                                    <img src="@Url.Content("~/content/UslugiImage/noimage.jpg")" alt="" width="198px" height="198px" /></a>
+                        }
+                        </div>
+            <div class="actionpricetyp">
+                @Html.ActionLink(@i, "SelectTypeUslug", "Services", new { s = i }, null)
+            </div>
+            
+        </div>
+    }
+    

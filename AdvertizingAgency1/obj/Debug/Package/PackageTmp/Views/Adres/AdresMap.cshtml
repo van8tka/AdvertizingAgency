@@ -1,0 +1,123 @@
+﻿@using System.Linq.Expressions
+@model int
+@{
+   
+    ViewBag.Title = "Карта арендных адресов";
+}
+
+
+<h2 style="margin-left: 120px">Установите метку на карте</h2>
+
+<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+<style>
+    .stationInfo {
+        height: 150px;
+        width: 250px;
+    }
+</style>
+
+
+<br />
+
+<div id="canvas" style="height: 600px; min-width:400px; max-width: 1200px; margin-top: 10px"></div>
+@using (Html.BeginForm("AdresMap","Adres"))
+{
+    <!--Устанавливаем секцию scripts, которая затем будет рендериться на мастер-странице -->
+@section scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            GetMap();
+        });
+
+        // Функция загрузки
+        function GetMap() {
+
+            google.maps.visualRefresh = true;
+            // установка основных координат
+            var Minsk = new google.maps.LatLng(53.903098, 27.561107);
+
+            // Установка общих параметров отображения карты, как масштаб, центральная точка и тип карты
+            var mapOptions = {
+                zoom: 10,
+                center: Minsk,
+                mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+            };
+
+            // Встраиваем гугл-карты в элемент на странице и получаем объект карты
+            var map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+
+            // Настраиваем красный маркер, который будет использоваться для центральной точки
+            var myLatlng = new google.maps.LatLng(53.903098, 27.561107);
+
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'Арендные адреса'
+            });
+
+            // Берем для маркера иконку с сайта google
+            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+            // Получаем данные
+        //не работает при публикации - исполь ajax
+            $.getJSON("/Adres/GetData", null, function(data) {
+                // Проходим по всем данным и устанавливаем для них маркеры
+                $.each(data, function(i, item) {
+                    var markerN = new google.maps.Marker({
+                        position: new google.maps.LatLng(item.GeoLong, item.GeoLat),
+                        map: map,
+                        title: item.Name
+                    });
+
+                    // Берем для этих маркеров синие иконки с сайта google
+                    markerN.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png')
+                    // Для каждого объекта добавляем доп. информацию, выводимую в отдельном окне
+                    var infowindow = new google.maps.InfoWindow({
+                        content: "<div class='stationInfo'><h2>" + item.Name + "</h2></div>"
+                    });
+
+                    // обработчик нажатия на маркер объекта
+                    map.addListener(markerN, 'click', function() {
+                        infowindow.open(map, markerN);
+                    });
+                });
+            });
+            //перечислим добавленные маркеры в массиве
+            var markers = [];
+            //событие добавление маркера
+            map.addListener('click', function(e) {
+                placeMarker(e.latLng, map);
+            });
+            //событие удаления добавленных маркеров
+            map.addListener('rightclick', function() {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(null);
+                }
+            });
+            //ф-я добавления маркеров
+            function placeMarker(latLng, map) {
+                markerAdd = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+                //добавим в массив маркер
+                markers.push(markerAdd);
+
+                var lat = latLng.lat(),
+                    lng = latLng.lng();
+                document.getElementById("lat").value = lat;
+                document.getElementById("lng").value = lng;
+            }
+
+        }
+    </script>
+ 
+}
+    <p>
+        <input type="hidden" name="lat" id="lat" />
+        <input type="hidden" name="lng" id="lng" />
+        @Html.Hidden(Model.ToString())
+        <input type="submit" value="Сохранить координаты точки" />
+    </p>
+}

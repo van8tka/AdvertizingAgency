@@ -1,0 +1,55 @@
+﻿@using DAL;
+@using AdvertizingAgency1.Models
+@model EditServiceViewModel
+@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+  <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<title>Изменить услугу</title>
+<div class="contentformEdit">
+    <h2>Изменить услугу</h2>
+    <div class="formEditOrCreate">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Услуги</legend>
+
+                <div class="editor-field">
+                    @Html.HiddenFor(model => model.service.Код_услуги)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.service.Наименование)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.service.Наименование)
+                    @Html.ValidationMessageFor(model => model.service.Наименование)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.service.Цена)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.service.Цена)
+                    @Html.ValidationMessageFor(model => model.service.Цена)
+                </div>
+
+                <p>
+                    <input type="submit" value="Сохранить изменения" />
+                </p>
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    </div>
+</div>
+
+

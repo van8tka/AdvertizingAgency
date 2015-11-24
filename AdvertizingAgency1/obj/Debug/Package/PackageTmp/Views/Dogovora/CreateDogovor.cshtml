@@ -1,0 +1,62 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model CreateDogovorViewModel
+
+@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+<title>Новый договор</title>
+
+
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+
+<div class="contentformEdit">
+    <h2>Добавить договор:</h2>
+    <div class="formEditOrCreate">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Дополнительная информация к договору</legend>
+                <div class="editor-label">
+                    @Html.Label("Примечания")
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.dogovorPrimechanie)
+                    @Html.ValidationMessageFor(model => model.dogovorPrimechanie)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Дата заключения договора")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.dogovorZaclechen)
+                    @Html.ValidationMessageFor(model => model.dogovorZaclechen)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Дата готовности рекламных услуг")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.dogovorGotovnost)
+                    @Html.ValidationMessageFor(model => model.dogovorGotovnost)
+                </div>
+                @Html.HiddenFor(model => model.dogovorClientId)
+                <p>
+                    <input type="submit" value="Продолжить" />
+                </p>
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("Назад", "Index")
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
+</div>

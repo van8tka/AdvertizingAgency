@@ -1,0 +1,65 @@
+﻿
+@model AdvertizingAgency1.Models.ToLongAdresnZakazViewModel
+
+@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+<title>Продлить срок обслуживания</title>
+
+
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+
+<div class="contentformEdit">
+    <h2>Продлить срок обслуживания заказа №@Model.KodZ:</h2>
+    <div class="formEditOrCreate">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Введите конечную дату, до которой продливается срок обслуживания заказа</legend>
+                <div class="editor-label">
+                    @Html.Label("Введите дату окончания срока обсулживания")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.DateFinish)
+                    @Html.ValidationMessageFor(model => model.DateFinish)
+                </div>
+                @Html.HiddenFor(model=>model.KodZ)
+                @Html.HiddenFor(model => model.KodA)
+                @Html.HiddenFor(model => model.StoimostRazm)
+
+                @if(Model.Srok!=0)
+                { 
+                <div class="editor-label">
+                    @Html.Label("Срок продления установлен на " + Model.Srok+ " мес")
+                  
+                </div>
+                <div class="editor-label">
+                        @Html.Label("Стоимость продления рекламных услуг составляет: "+Model.StoimostProdl)
+                    </div>
+                    @Html.ActionLink("Продолжить","SRequestLong")
+                }
+                else
+                {
+                   <p>
+                    <input type="submit" value="Продолжить" />
+                  </p>  
+                }
+               
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("Назад", "Index")
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
+</div>

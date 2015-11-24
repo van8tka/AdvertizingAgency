@@ -1,0 +1,56 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model ServicesViewModel
+
+@{
+    ViewBag.Title = "Услуги";
+}
+
+    <div class="partialtypeservis">
+        @Html.Partial("PartialMenyService", Model)
+    </div>
+    <div style="margin-left:170px">
+
+        <h2>Перечень услуг оказываемых рекламным агенством:</h2>
+        <h2> @ViewBag.Typ</h2>
+        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+        {
+            <p>
+                @Html.ActionLink("Добавить новую услугу", "CreateService", "Services",new {s=ViewBag.Typ},null)
+            </p>
+            <table class="tablePrices">
+                <tr>
+                    <th>Код</th>
+                    <th>Наименование</th>
+                    <th class="costprice">Цена</th>
+                    <th>Действие</th>
+                    @foreach (Услуги service in Model.Services)
+                    {
+                    <tr>
+                        <td>@service.Код_услуги</td>
+                        <td class="actiosTable">@Html.ActionLink(@service.Наименование, "EditService", "Services", new { id = service.Код_услуги }, null)</td>
+                        <td class="costprice">@service.Цена</td>
+                        <td class="actiosTable">@Html.ActionLink("Удалить", "DeleteService", "Services", new { id = service.Код_услуги }, null)</td>
+                    </tr>
+                    }
+                </table>
+        }
+        else
+        {
+            <table class="tablePrices">
+                <tr>
+                    <th>Наименование</th>
+                    <th class="costprice">Цена</th>
+                    @foreach (Услуги service in Model.Services)
+                    {
+                    <tr>
+                        <td>@service.Наименование</td>
+                        <td class="costprice">@service.Цена</td>
+                    </tr>
+                    }
+                </table>
+        }
+    </div>
+    <div class="pager" style="margin-left:170px">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("SelectTypeUslug", new { page = x }))
+</div>

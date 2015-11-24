@@ -1,0 +1,65 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model CreateClientForDogovorViewModel
+
+@{
+    ViewBag.Title = "Обратная связь";
+}
+
+<h2>Заполните свои данные для обратной связи:</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Новый клиент</legend>
+      
+        <div class="editor-label">
+            @Html.Label("ФИО контактного лица")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.clientFio)
+            @Html.ValidationMessageFor(model => model.clientFio)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Телефон")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.clientPhone)
+            @Html.ValidationMessageFor(model => model.clientPhone)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Email")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.clientEmail)
+            @Html.ValidationMessageFor(model => model.clientEmail)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Skype")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.clientSkype)
+            @Html.ValidationMessageFor(model => model.clientSkype)
+        </div>
+      
+        <div class="editor-label">
+            @Html.Label("Пожелания клиента")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.clientPogelanie)
+            @Html.ValidationMessageFor(model => model.clientPogelanie)
+        </div>
+               
+            @Html.HiddenFor(model => model.clientName)        
+            @Html.HiddenFor(model => model.clientUNP)   
+            @Html.HiddenFor(model => model.clientAdres)
+
+        <p>
+            <input type="submit" value="Отправить" />
+        </p>
+    </fieldset>
+}
+
+
+

@@ -1,0 +1,54 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model EditAdresViewModel
+@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<title>Изменить адрес</title>
+<div class="contentformEdit">
+<h2>Изменить адрес размещения стендов</h2>
+<div class="formEditOrCreate">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Адрес</legend>
+
+            <div class="editor-field">
+                @Html.HiddenFor(model => model.adres.Код_адреса)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.adres.Адрес)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.adres.Адрес)
+                @Html.ValidationMessageFor(model => model.adres.Адрес)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.adres.Цена_на_месяц)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.adres.Цена_на_месяц)
+                @Html.ValidationMessageFor(model => model.adres.Цена_на_месяц)
+            </div>
+
+            <p>
+                <input type="submit" value="Сохранить изменения" />
+            </p>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Назад", "Index")
+    </div>
+</div>
+</div>

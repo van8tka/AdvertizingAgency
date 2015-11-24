@@ -1,0 +1,36 @@
+﻿@model int
+@{
+    ViewBag.Title = "Загрузка файлов макета";
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+}
+
+
+<div class="contentformEdit">
+    <h2>Выберите файлы макетов договора №@ViewBag.Dogovor загрузки </h2>
+    <div class="formEditOrCreate">
+        <p>
+            @using (Html.BeginForm("AddFileMakets", "Razrabotki", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset class="fieldsetform">
+                    <legend>Выберите файлы для загрузки на сервер</legend>
+                    @Html.Hidden(Model.ToString())
+                    <br/>
+                    <input type="file" name="fileUpload[0]" /><br />
+                    <input type="file" name="fileUpload[1]" /><br />
+                    <input type="file" name="fileUpload[2]" /><br />
+                    <input type="file" name="fileUpload[3]" /><br />
+                    <input type="file" name="fileUpload[4]" /><br />
+                    <input type="file" name="fileUpload[5]" /><br />
+                    <input type="file" name="fileUpload[6]" /><br />
+                    <input type="file" name="fileUpload[7]" /><br />
+                    <input type="file" name="fileUpload[8]" /><br />
+                    <input type="file" name="fileUpload[9]" /><br />
+                    <input type="submit" value="Загрузить файлы на сервер" />
+                </fieldset>
+            }
+        </p>
+        @Html.ActionLink("Назад", "SDesigner", "Dogovora")
+    </div>
+</div>

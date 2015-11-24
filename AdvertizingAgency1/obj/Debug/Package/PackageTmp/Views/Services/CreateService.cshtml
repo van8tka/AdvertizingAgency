@@ -1,0 +1,48 @@
+﻿@using AdvertizingAgency1.Models
+@model CreateServiceViewModel
+@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<title>Добавление услуги</title>
+<div class="contentformEdit">
+    <h2>Добавить новую услугу в прайс-лист</h2>
+    <div class="formEditOrCreate">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Услуги</legend>
+                <div class="editor-label">
+                    @Html.Label("Наименование")
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ServiceName)
+                    @Html.ValidationMessageFor(model => model.ServiceName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.Label("Цена")
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.ServiceCost)
+                    @Html.ValidationMessageFor(model => model.ServiceCost)
+                </div>
+
+                <p>
+                    <input type="submit" value="Добавить" />
+                </p>
+            </fieldset>
+        }
+
+        <div>
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    </div>
+</div>

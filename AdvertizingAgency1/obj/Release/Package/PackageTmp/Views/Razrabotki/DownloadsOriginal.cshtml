@@ -1,0 +1,30 @@
+﻿@model AdvertizingAgency1.Models.DownloadFilesViewModel
+@{
+    ViewBag.Title = "Сохранение оригинальных файлов разработки";
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+}
+
+
+<div class="contentformEdit">
+    <h2>Сохраните оригиналы файлов разработки договора №@ViewBag.Dogovor</h2>
+    <div class="formEditOrCreate">
+        <p>
+
+            <table class="tableAny">
+                <tr>
+                    <th>Имя файла</th>
+                    <th>Ссылка</th>
+                </tr>
+                @for (var i = 0; i <= Model.FileList.Count - 1; i++)
+                {
+                    <tr>
+                        @Html.HiddenFor(model => model.NumberOfDogovor)
+                        <td> @Model.FileList[i].ToString() </td>
+                        <td> @Html.ActionLink("Сохранить", "DownloadOriginal", new { ImageName = Model.FileList[i].ToString(), id = Model.NumberOfDogovor }) </td>
+                    </tr>
+                }
+            </table>
+        </p>
+        @Html.ActionLink("Назад", "SInMasters", "Dogovora")
+    </div>
+</div>

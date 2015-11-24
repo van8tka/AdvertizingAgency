@@ -1,0 +1,54 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model ServicesViewModel
+
+@{
+    ViewBag.Title = "Услуги";
+}
+
+<div>
+    <h2>Перечень услуг оказываемых рекламным агенством:</h2>
+ 
+    @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("bookkeeper"))
+{
+    <p>
+        @Html.ActionLink("Добавить новую услугу", "CreateService", "Services")
+    </p>
+        <table class="tablePrices">
+            <tr>
+            <th>Код</th>
+            <th>Наименование</th>
+                <th class="costprice">Цена</th>
+             <th>Действие</th>
+            @foreach (Услуги service in Model.Services)
+            {
+                <tr>
+                    <td>@service.Код_услуги</td>
+                    <td class="actiosTable">@Html.ActionLink(@service.Наименование, "EditService", "Services", new { id = service.Код_услуги }, null)</td>
+                    <td class="costprice">@service.Цена</td>
+                    <td class="actiosTable">@Html.ActionLink("Удалить", "DeleteService", "Services", new { id = service.Код_услуги }, null)</td>
+                </tr>
+            }
+        </table>
+}
+    else
+    {
+        <table class="tablePrices">
+            <tr>
+                <th>Код</th>
+                <th>Наименование</th>
+                <th class="costprice">Цена</th>
+                @foreach (Услуги service in Model.Services)
+                {
+                <tr>
+                    <td>@service.Код_услуги</td>
+                    <td >@service.Наименование</td>
+                    <td class="costprice">@service.Цена</td>
+                </tr>
+                }
+            </table>
+    }
+</div>
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+</div>

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Файлов нет</title>
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="contentformEdit">
+
+        <div class="formEditOrCreate">
+            <h2 style="margin-left: 100px;margin-top: 100px">К сожалению файлы по данному договору ещё не загружены!</h2>
+            @Html.ActionLink("Назад", "SSets", "Dogovora")
+        </div>
+    </div>
+    <div>
+
+    </div>
+</body>
+</html>

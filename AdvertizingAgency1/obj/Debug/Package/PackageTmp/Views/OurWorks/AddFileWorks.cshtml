@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+
+<title>Загрузка файлов</title>
+<div class="contentformEdit">
+    <h2>Выберите файлы для загрузки </h2>
+    <div class="formEditOrCreate">
+        <p>
+            @using (Html.BeginForm("AddFileWorks", "OurWorks", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset class="fieldsetform">
+                    <legend>Выберите файлы для загрузки на сервер</legend>
+                 
+                    <br />
+                    <input type="file" name="fileUpload[0]" /><br />
+                    <input type="file" name="fileUpload[1]" /><br />
+                    <input type="file" name="fileUpload[2]" /><br />
+                    <input type="file" name="fileUpload[3]" /><br />
+                    <input type="file" name="fileUpload[4]" /><br />
+                    <input type="file" name="fileUpload[5]" /><br />
+                    <input type="file" name="fileUpload[6]" /><br />
+                    <input type="file" name="fileUpload[7]" /><br />
+                    <input type="file" name="fileUpload[8]" /><br />
+                    <input type="file" name="fileUpload[9]" /><br />
+                    <input type="submit" value="Загрузить файлы на сервер" />
+                </fieldset>
+            }
+        </p>
+        @Html.ActionLink("Назад", "Index", "OurWorks")
+    </div>
+</div>

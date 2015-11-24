@@ -1,0 +1,27 @@
+﻿@using System.Runtime.CompilerServices
+@model AdvertizingAgency1.Models.DownloadFilesViewModel
+@{
+    ViewBag.Title = "Отзывы о компании";
+}
+
+
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+
+<div style="margin-left: 100px">
+    <h2 style="margin-left: 170px">Отзывы о работе нашей компании:</h2>
+    <br />
+    @foreach (string i in Model.FileList)
+{
+    <div style="margin-left: 150px; margin-top: 15px">
+        <img class="small_img" src="@Url.Content("~/content/Responses/")@i" alt="" width="500px" height="700px" />
+        @if (HttpContext.Current.User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Удалить", "DeleteResponse", "Responses", new { id = "", file = i }, null)
+            }
+    </div>
+}
+</div>
+@if (HttpContext.Current.User.IsInRole("admin"))
+{
+    @Html.ActionLink("Добавить изображения", "AddFileResponse")
+}

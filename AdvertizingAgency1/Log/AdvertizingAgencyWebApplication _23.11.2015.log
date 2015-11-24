@@ -1,0 +1,17 @@
+
+[23.11.2015 16:55:59.934] Вызов метода создания файла договора
+[23.11.2015 16:55:59.935] 1 вход в метод для работы с Word
+[23.11.2015 16:55:59.935] 2имя файла:2145.doc
+[23.11.2015 16:55:59.935] 3 путь к шаблону:D:\Visual\AdvertizingAgency1ч23\AdvertizingAgency1\AdvertizingAgency1\App_data\DogovorTemp.dotx
+[23.11.2015 16:55:59.936] 4 Full path:D:\Visual\AdvertizingAgency1ч23\AdvertizingAgency1\AdvertizingAgency1\App_data\Dogovora\2145.doc
+[23.11.2015 16:55:59.936] 5 Create new word application
+[23.11.2015 16:56:08.009] 6 Create new word document
+[23.11.2015 16:56:08.009] 7 Open word document witch path = path to templace
+[23.11.2015 16:56:11.143] 8 Open method create document with template
+[23.11.2015 16:56:11.145] 8.1 заполняем данными шаблон
+[23.11.2015 16:56:11.145] 8.2 получаем путь к xml файлу:D:\Visual\AdvertizingAgency1ч23\AdvertizingAgency1\AdvertizingAgency1\App_Data\AboutCompany.xml
+[23.11.2015 16:56:11.157] 8.3 заполняем по закладкам имеющиеся данные:1 Валирам А.Д.2 10003 Иванов И.И.4 23.11.20155 2345657345629
+[23.11.2015 16:56:11.295] 8.4 выход из метода
+[23.11.2015 16:56:11.295] 9 Open method save new document word
+[23.11.2015 16:56:12.257] 10 Closed document template
+[23.11.2015 16:56:14.079] Выполняется в любом случае!!!!!!!!!!!!!!!!!!!!!!!!!закрытие word app

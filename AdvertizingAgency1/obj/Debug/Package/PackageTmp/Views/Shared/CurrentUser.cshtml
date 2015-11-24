@@ -1,0 +1,16 @@
+﻿
+@using DAL
+<div class="current-user">
+    <p>Текущий пользователь:</p>
+    @using (AdvertizingAgency1Entities context = new AdvertizingAgency1Entities())
+{
+    int id = context.Администрирование.Where(z => z.Логин == HttpContext.Current.User.Identity.Name).FirstOrDefault().Код_сотрудника;
+    Сотрудники str = context.Сотрудники.Where(x => x.Код_сотрудника == id).FirstOrDefault();
+    <div class="login">
+        @Html.LabelForModel(str.Должность)
+        </div>
+    <div class="login">
+        @Html.LabelForModel(str.ФИО_сотрудника)
+    </div>
+}
+</div>

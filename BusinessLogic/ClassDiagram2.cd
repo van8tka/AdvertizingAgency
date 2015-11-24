@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BusinessLogic.DataManager">
+    <Position X="2" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACABAAAAAAAQCACAAIgACACCAAAQCgIAEBAACQ=</HashCode>
+      <FileName>DataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfAdresRepository" BaseTypeListCollapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAgAAAAEAQAAgAIAAAAAAAAEAAAAAAAAAAAAAAMA=</HashCode>
+      <FileName>Implementations\EfAdresRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfClientsRepository" BaseTypeListCollapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAABAAAAAABAAABAAAAAAAEhgAAAAAA=</HashCode>
+      <FileName>Implementations\EfClientsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfContaktnoeLicoRepository" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAQBQAAAEIAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\EfContaktnoeLicoRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfDogovorRepository" BaseTypeListCollapsed="true">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAEAAEAAAAAAAAAAAgAAAAAgAAAAAAAAAAAAg=</HashCode>
+      <FileName>Implementations\EfDogovorRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfPricesRepository" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAACAAAAAAAEAEAAAAAAAQAAAAAAgAAAAAAACA=</HashCode>
+      <FileName>Implementations\EfPricesRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfRazrabotkiRepozitory" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAAAAAAAAAAAAQAACAAAABAAAAABAAAAA=</HashCode>
+      <FileName>Implementations\EfRazrabotkiRepozitory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfUsersRepository" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAACAAABARkAAAAEAAAAAAAAAAAAAAAAAAAAAAACEAA=</HashCode>
+      <FileName>Implementations\EfUsersRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfZakazyAdresyRepository" BaseTypeListCollapsed="true">
+    <Position X="5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAECAgAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Implementations\EfZakazyAdresyRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BusinessLogic.Implementations.EfZakazyRepository" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQACAAAAAAAAAAAAAABAAAAAAAQAAAgAAAAQAAEAAAA=</HashCode>
+      <FileName>Implementations\EfZakazyRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="BusinessLogic.Interfaces.IAdresRepository" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAgAAAAEAQAAgAIAAAAAAAAEAAAAAAAAAAAAAAMA=</HashCode>
+      <FileName>Interfaces\IAdresRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IClientsRepository" Collapsed="true">
+    <Position X="9.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAABAAABAAAAAAAEhgAAAAAA=</HashCode>
+      <FileName>Interfaces\IClientsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IContaktnoeLicoRepository" Collapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQBQAAAEAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IContaktnoeLicoRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IDogovorRepository" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAEAAAAAAAAAAAgAAAAAgAAAAAAAAAAAAg=</HashCode>
+      <FileName>Interfaces\IDogovorRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IPricesRepository" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAAEAEAAAAAAAQAAAAAAgAAAAAAACA=</HashCode>
+      <FileName>Interfaces\IPricesRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IRazrabotkiRepository" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAQAACAAAABAAAAABAAAAA=</HashCode>
+      <FileName>Interfaces\IRazrabotkiRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IUsersRepository" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAABARkAAAAEAAAAAAAAAAAAAAAAAAAAAAACEAA=</HashCode>
+      <FileName>Interfaces\IUsersRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IZakazyAdresyRepository" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAgAAAAAAgAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Interfaces\IZakazyAdresyRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BusinessLogic.Interfaces.IZakazyRepository" Collapsed="true">
+    <Position X="9.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAABAAAAAAAQAAAgAAAAQAAEAAAA=</HashCode>
+      <FileName>Interfaces\IZakazyRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

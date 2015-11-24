@@ -1,0 +1,100 @@
+﻿@using DAL;
+@model AdvertizingAgency1.Models.UsersViewModel
+
+@{
+    ViewBag.Title = "Сотрудники";
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+
+<div class="contentformEdit">
+    <h2>Сотрудники компании</h2>
+    <div class="formEditOrCreate">
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            if (HttpContext.Current.User.IsInRole("admin"))
+            {
+                @Html.ActionLink("Добавить нового сотрудника", "CreateUser", "User")
+                <fieldset>
+                    <legend>Список сотрудников компании</legend>
+
+                    <table class="tableAny">
+                        <tr class="firststringtable">
+                            <th>Код сотрудника</th>
+                            <th>ФИО сотруника</th>
+                            <th>Должность</th>
+                            <th>Телефон</th>
+                            <th>Адрес</th>
+                            <th>Email</th>
+                            <th>Логин</th>
+                            <th>Пароль</th>
+                            <th>Группа доступа</th>
+                            <th>Удалить сотрудника</th>
+                        </tr>
+                        @foreach (Сотрудники s in Model.Users)
+                        {
+                            <tr>
+                                <td>@s.Код_сотрудника</td>
+                                <td>@Html.ActionLink(s.ФИО_сотрудника, "ChangeUser", new { id = s.Код_сотрудника }, null)</td>
+                                <td>@s.Должность</td>
+                                <td>@s.Телефон</td>
+                                <td>@s.Адрес</td>
+                                <td>@s.Email</td>
+                                @foreach (Администрирование a in Model.Registers)
+                                {
+                                    if (s.Код_сотрудника == a.Код_сотрудника)
+                                    {
+                                        <td>@a.Логин</td>
+                                        <td>@a.Пароль</td>
+                                        <td>@a.Группа_доступа</td>
+                                    }
+                                }
+                                <td>@Html.ActionLink("Удалить", "DeleteUser", new { id = s.Код_сотрудника }, null)</td>
+                            </tr>
+                        }
+                    </table>
+
+                </fieldset>
+            }
+            else
+            {
+
+                <fieldset>
+                    <legend>Список сотрудников компании</legend>
+
+                    <table class="tableAny">
+                        <tr class="firststringtable">
+                            <th>Код сотрудника</th>
+                            <th>ФИО сотруника</th>
+                            <th>Должность</th>
+                            <th>Телефон</th>
+                            <th>Адрес</th>
+                            <th>Email</th>
+
+                        </tr>
+                        @foreach (Сотрудники s in Model.Users)
+                        {
+                            <tr>
+                                <td>@s.Код_сотрудника</td>
+                                <td>@s.ФИО_сотрудника</td>
+                                <td>@s.Должность</td>
+                                <td>@s.Телефон</td>
+                                <td>@s.Адрес</td>
+                                <td>@s.Email</td>
+                            </tr>
+                        }
+                    </table>
+
+                </fieldset>
+            }
+        }
+
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
+</div>

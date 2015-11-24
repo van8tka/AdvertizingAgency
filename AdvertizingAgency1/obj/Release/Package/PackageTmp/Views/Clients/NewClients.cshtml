@@ -1,0 +1,50 @@
+﻿@using DAL;
+@using AdvertizingAgency1.Models
+@model ClientsViewModel
+@{
+    ViewBag.Title = "Клиенты";
+}
+
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<h2>Список клиентов оставивших заявки:</h2>
+@*<ul class="multimenu">
+    <li class="nonactivepage">  @Html.ActionLink("Все клиенты  ", "Index")</li>
+    <li class="activepage"> @Html.ActionLink("Новые клиенты", "NewClients")</li>
+</ul>*@
+<div>
+    <table class="tableAny">
+        <tr class="firststringtable">
+            <th>ФИО</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Skype</th>
+            <th>Примечание</th>
+            <th>Удалить</th>
+            <th>Заключить договор</th>
+        </tr>
+        @foreach (Клиенты client in Model.client)
+        {
+            if (client.Статус == "новый")
+            {
+                <tr>
+                    @foreach (Контактное_лицо contact in Model.contactnoeLico)
+                    {
+                        if (client.Код_клиента == contact.Код_клиента)
+                        {
+                            <td>@contact.ФИО</td>
+                            <td>@contact.Телефон</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.Skype</td>
+                            <td>@contact.Пожелания</td>
+                            <td>@Html.ActionLink("Удалить", "DeleteClients", "Clients", new { id = client.Код_клиента }, null)</td>
+                            <td>@Html.ActionLink("Новый договор", "UpdateClients", "Dogovora", new { id = client.Код_клиента }, null)</td>
+                        }
+                    }
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("NewClients", new { page = x }))
+</div> 

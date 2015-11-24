@@ -1,0 +1,53 @@
+﻿@using System.Runtime.CompilerServices
+@model AdvertizingAgency1.Models.DownloadFilesViewModel
+@{
+    ViewBag.Title = "Наши работы";
+    //Layout = null;
+}
+
+@Scripts.Render("~/bundles/modernizr")
+<link href="~/magnific-popup/magnific-popup.css" type="text/css" rel="stylesheet" />
+<script src="~/magnific-popup/jquery.magnific-popup.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        
+        $('.library').magnificPopup({
+            delegate: 'a', // child items selector, by clicking on it popup will open
+            type: 'image',
+            gallery : {enabled:true}
+            
+            // other options
+        });
+    });
+
+</script>
+
+
+
+<div style="margin-left: 100px">
+    <h2>Наши работы:</h2>
+
+    <br />
+
+    <div >
+        @foreach (string i in Model.FileList)
+{
+    <div class="library">
+        <a class="item" href="@Url.Content("~/content/OurWorks/")@i">   <img src="@Url.Content("~/content/OurWorks/")@i" alt="" width="198px" height="198px" /></a>
+    </div>
+    if (HttpContext.Current.User.IsInRole("admin"))
+    {
+                @Html.ActionLink("Удалить", "DeleteOurWorks", "OurWorks", new { id = "", file = i }, null)
+            }
+        }
+    </div>
+
+</div>
+
+@if (HttpContext.Current.User.IsInRole("admin"))
+{
+    @Html.ActionLink("Добавить изображения", "AddFileWorks")
+}

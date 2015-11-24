@@ -1,0 +1,92 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model CreateClientForDogovorViewModel
+
+@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<title>Новый договор</title>
+<div class="contentformEdit">
+    <h2>Добавить нового клиента к договору:</h2>
+    <div class="formEditOrCreate">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>Новый клиент</legend>
+                <div class="editor-label">
+                    @Html.Label("Наименование компании")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.clientName)
+                    @Html.ValidationMessageFor(model => model.clientName)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("УНП")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.clientUNP)
+                    @Html.ValidationMessageFor(model => model.clientUNP)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("ФИО контактного лица")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.clientFio)
+                    @Html.ValidationMessageFor(model => model.clientFio)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Телефон")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.clientPhone)
+                    @Html.ValidationMessageFor(model => model.clientPhone)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Email")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.clientEmail)
+                    @Html.ValidationMessageFor(model => model.clientEmail)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Skype")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.clientSkype)
+                    @Html.ValidationMessageFor(model => model.clientSkype)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Адрес")
+                </div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.clientAdres)
+                    @Html.ValidationMessageFor(model => model.clientAdres)
+                </div>
+                <div class="editor-label">
+                    @Html.Label("Пожелания клиента")
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.clientPogelanie)
+                    @Html.ValidationMessageFor(model => model.clientPogelanie)
+                </div>
+                @Html.HiddenFor(model => model.clientId)
+                <p>
+                    <input type="submit" value="Продолжить" />
+                </p>
+            </fieldset>
+        }
+        <div>
+            @Html.ActionLink("Назад", "Index")
+        </div>
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    </div>
+</div>

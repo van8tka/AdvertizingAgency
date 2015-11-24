@@ -1,0 +1,77 @@
+﻿@using DAL
+@using AdvertizingAgency1.Models
+@model AdressTableUseViewModel
+@{
+    ViewBag.Title = "Таблица аренды билбордов";
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<div style="text-align: center">
+    <h2>Таблица аренды билбордов на @Model.CurrentYear:</h2>
+    <br />
+ 
+    <table class="tableAdresUse">
+        <tr class="firstAZ">
+            <th>Номер</th>
+            <th>Адрес</th>
+            @for (int i = Model.CurrentMonth; i <= 12; i++)
+            {
+                <th class="Month">@i</th>
+            }
+            
+            @foreach (Адреса adres in Model.Adres)
+            {
+               foreach (АдресныеЗаказы adz in Model.AdreZakaz)
+                {
+                    if (adz.Код_адреса==adres.Код_адреса)
+                    {
+                    <tr>
+                        <td>@adres.Код_адреса</td>
+                        <td>@adres.Адрес</td>
+
+                        @if (DateTime.Parse(adz.Дата_окончания.ToString()).Year == Model.CurrentYear)
+                        {
+                            for (int i = Model.CurrentMonth; i <= DateTime.Parse(adz.Дата_окончания.ToString()).Month; i++)
+                            {
+                                <td class="busy">@i</td>
+                            }
+                            if (DateTime.Parse(adz.Дата_окончания.ToString()).Month < 12)
+                            {
+                                for (int d = DateTime.Parse(adz.Дата_окончания.ToString()).Month + 1; d <= 12; d++)
+                                {
+                                    if (DateTime.Parse(adz.Дата_окончания.ToString()).Month + 1 >= Model.CurrentMonth)
+                                    { <td class="empty">@d</td>}
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (DateTime.Parse(adz.Дата_окончания.ToString()).Year > Model.CurrentYear)
+                            {
+                                      for (int i = Model.CurrentMonth; i <= 12; i++)
+                                {
+                                    <td class="busy">@i</td>
+                                }
+                            }
+                        }
+
+                    </tr>
+                    }
+                }
+            }
+
+        </table>
+   
+    <table>
+        <tr>
+            <td>Арендованный адрес</td>
+            <td style="background-color: red" width="20px"></td>
+        </tr>
+        <tr>
+            <td>Свободный адрес</td>
+            <td style="background-color:silver" width="20px"></td>
+        </tr>
+    </table>
+</div>
+
+
+

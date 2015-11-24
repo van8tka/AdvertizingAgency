@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AdvertizingAgency1.Controllers.AccountController">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAIAAACAAQAAQAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.AdresController">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACggAAEAAAAIAAAAAAAAAAAAAAYAACAAFAEAAAACA=</HashCode>
+      <FileName>Controllers\AdresController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.ClientsController">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAQAAAIAAIAAAAAEAEAAAAAA=</HashCode>
+      <FileName>Controllers\ClientsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.ContactsController">
+    <Position X="7" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAABAAIAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ContactsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.DogovoraController">
+    <Position X="2" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AZgASUAQGACUACNCAAAAiQEAABgAIAAEkYFRkAEACAA=</HashCode>
+      <FileName>Controllers\DogovoraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.FeedbackController">
+    <Position X="7" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAEAAgAAAAA=</HashCode>
+      <FileName>Controllers\FeedbackController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.HomeController">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAIAAAAAAAAAAAAAAAAAAIAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.OurWorksController">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABgAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\OurWorksController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.RazrabotkiController">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgABAwAAAAAAIAAAAAAAiAAAAAAgIAAAEAEAAABAAAA=</HashCode>
+      <FileName>Controllers\RazrabotkiController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.ResponsesController">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAEAAAAAAAIAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ResponsesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.ServicesController">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAEAEAAABAA=</HashCode>
+      <FileName>Controllers\ServicesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.UserController">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAEQAAAAAEAAAAAAAAAAAAIAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.Controllers.ZakazController">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIACQCEBBACAAAAAAAAAAAAIAAAAAEABAAAAAA=</HashCode>
+      <FileName>Controllers\ZakazController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.AboutCompany.AboutCompany">
+    <Position X="8.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>AboutCompany\AboutCompany.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.AboutCompany.Internet">
+    <Position X="8.5" Y="4.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="AdvertizingAgency1.AboutCompany.Internet.InternetConnectionState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>AboutCompany\Internet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAIAAAAAAAAAAAAAAAAAQgAAAAAAAAA=</HashCode>
+      <FileName>AboutCompany\Internet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.HtmlHelpers.PagingHelpers">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HtmlHelpers\PagingHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvertizingAgency1.NinjectControllerFactory">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>NinjectControllerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,82 @@
+﻿@using DAL;
+@using AdvertizingAgency1.Models
+@model ClientsViewModel
+@{
+    ViewBag.Title = "Клиенты";
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<h2>Список всех клиентов</h2>
+@*@if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+{
+    <ul class="multimenu">
+        <li class="activepage">  @Html.ActionLink("Все клиенты", "Index")</li>
+        <li class="nonactivepage"> @Html.ActionLink("Новые клиенты", "NewClients")</li>
+    </ul>
+}*@
+<div>
+    <table class="tableAny">
+        <tr class="firststringtable">
+            <th>Код</th>
+            <th>Наименование</th>
+            <th>УНП</th>
+            <th>Контактное лицо</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Skype</th>
+            <th class="shiroko">Примечание</th>
+            <th>Адрес</th>
+            <th>Статус</th>
+            @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+            {
+                <th>Удалить</th>
+                 <th>Добавить договор</th>
+            }
+        </tr>
+        @foreach (Клиенты client in Model.client)
+        {
+            if (client.Статус != "новый")
+            {
+                <tr>
+                    <td>@client.Код_клиента</td>
+                    @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                    {
+                        <td>@Html.ActionLink(@client.Наименование, "EditClient", "Clients", new {id = client.Код_клиента}, null)</td>
+                    }
+                    else
+                    {
+                      <td>@client.Наименование</td>
+                    }            
+                    <td>@client.УНП</td>
+                    @foreach (Контактное_лицо contact in Model.contactnoeLico)
+                    {
+                        if (client.Код_клиента == contact.Код_клиента)
+                        {
+                            <td>@contact.ФИО</td>
+                            <td>@contact.Телефон</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.Skype</td>
+    <td class="shiroko">@contact.Пожелания</td>
+                        }
+                    }
+                    <td>@client.Адрес</td>
+                    <td>@client.Статус</td>  
+                        @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                        {
+                            <td>@Html.ActionLink("Удалить", "DeleteClients", "Clients", new { id = client.Код_клиента }, null)</td>
+                            @*<td>@Html.ActionLink("Новый договор", "CreateDogovor", "Dogovora", new { id = client.Код_клиента }, null)</td>*@
+                              <td>@Html.ActionLink("Новый договор", "Index", "Zakaz", new { id = client.Код_клиента,newdogovor = true }, null)</td>
+                        } 
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
+</div> 
+
+
+
+
+
+    

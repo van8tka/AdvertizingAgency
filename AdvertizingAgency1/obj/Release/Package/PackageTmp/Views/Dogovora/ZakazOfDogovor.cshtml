@@ -1,0 +1,135 @@
+﻿@using DAL
+@model AdvertizingAgency1.Models.ZakazOfDogovorViewModel
+@{
+    Layout = null;
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+}
+<link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+<title>Список заказов договора № @ViewBag.NomDog </title>
+<div class="contentformEdit">
+    <div class="formEditOrCreate">
+        <fieldset>
+            <legend> Список заказов договора № @ViewBag.NomDog</legend>
+            <table class="tableAny">
+                <tr>
+                    <th>Номер заказа</th>
+                    <th>Номер услуги</th>
+                    <th>Наименование услуги</th>
+                    <th>Итоговая стоимость</th>
+                    @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                    { 
+                        <th>Удалить</th>
+                    }
+                </tr>
+                @foreach (Заказы i in Model.Zakaz)
+                {
+
+                    bool vivod = true;
+                    foreach (АдресныеЗаказы az in Model.AdresZakaz)
+                    {
+                        if (i.Код_заказа == az.Код_заказа)
+                        {
+                            vivod = false;
+                        }
+                    }
+                    if (vivod)
+                    {
+                        <tr>
+                            <td>@i.Код_заказа</td>
+                            <td>@i.Код_услуги</td>
+                            @foreach (Услуги u in Model.Uslugi)
+                            {
+                                if (u.Код_услуги == i.Код_услуги)
+                                {
+                                    <td>@u.Наименование</td>
+                                }
+                            }
+                            <td>@i.Стоимость</td>
+                            @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                            {
+                                <td>@Html.ActionLink("Удалить из договора", "DelleteZakaz", "Dogovora", new {id = i.Код_заказа}, null)</td>
+
+                            } </tr>
+                    }
+                }
+            </table>
+        </fieldset>
+
+        <br />
+        <br />
+
+        <fieldset>
+            <legend> Список заказов договора № @ViewBag.NomDog размещённые на арендных адресах</legend>
+            <table class="tableAny">
+                <tr>
+                    <th>Номер заказа</th>
+                    <th>Номер услуги</th>
+                    <th>Наименование услуги</th>
+                    <th>Адрес размещения</th>
+                    <th>Дата окончания обслуживания</th>
+                    <th>Стоимость размещения</th>
+                    <th>Срок продления</th>
+                    <th>Стоимость продления</th>
+                    <th>Итоговая стоимость</th> 
+                    @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                    {
+                        <th>Удалить</th>
+                        <th>Продлить </th>
+                    }
+                    @if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("installer"))
+                    {
+                        <th>Демонтаж </th>
+                    }
+                </tr>
+                @foreach (Заказы i in Model.Zakaz)
+                {
+                    <tr>
+                        @foreach (Услуги u in Model.Uslugi)
+                        {
+                            if (u.Код_услуги == i.Код_услуги)
+                            {
+                                foreach (var az in Model.AdresZakaz)
+                                {
+                                    if (i.Код_заказа == az.Код_заказа)
+                                    {
+                                        foreach (Адреса a in Model.Adresa)
+                                        {
+                                            if (az.Код_адреса == a.Код_адреса)
+                                            {
+                                                string date = DateTime.Parse(az.Дата_окончания.ToString()).ToShortDateString();
+                                                <td>@i.Код_заказа</td>
+                                                <td>@i.Код_услуги</td>
+                                                <td>@u.Наименование</td>
+                                                <td>@a.Адрес</td>
+                                                <td>@date</td>
+                                                <td>@az.Стоимость_размещения</td>
+                                                <td>@az.Срок_продления</td>
+                                                <td>@az.Стоимость_продления</td>
+                                                <td>@i.Стоимость</td>
+                               if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("maneger"))
+                                {
+                                    <td>@Html.ActionLink("Удалить из договора", "DelleteZakaz", "Dogovora", new {id = i.Код_заказа}, null)</td>
+                                    <td>@Html.ActionLink("Продлить срок обслуживания", "ToLongServiceAdresZakaz", "Dogovora", new {id = i.Код_заказа}, null)</td>
+
+                                }
+                                                if (HttpContext.Current.User.IsInRole("admin") || HttpContext.Current.User.IsInRole("installer"))
+                                                {
+                                                    <td>@Html.ActionLink("Демонтировать", "DemontagZakazFromAdres", "Dogovora", new {id = i.Код_заказа}, null)</td>
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    </tr>
+                }
+            </table>
+        </fieldset>
+        @Html.ActionLink("Назад", "Index", "Dogovora")
+    </div>
+</div>
